@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid air-quality-bg position-relative">
+    <div class="overlay-gradient"></div>
+    <div class="row align-items-center">
+        <div class="col-md-6 offset-md-3 text-center position-relative">
+            <div class="card bg-white bg-opacity-75 shadow-lg border-0">
+                <div class="card-body p-5">
+                    <div class="mb-4">
+                        <img 
+                            src="{% static 'images/air-quality-background.png' %}" 
+                            alt="Air Quality Icon" 
+                            class="img-fluid mb-4" 
+                            style="max-width: 150px;"
+                        >
+                    </div>
+                    <h1 class="display-5 text-primary mb-3">
+                        <i class="bi bi-wind me-3"></i>Air Quality Clustering Analysis
+                    </h1>
+                    <p class="lead text-muted mb-4">
+                        Dive deep into global air quality patterns and insights
+                    </p>
+                    <a href="{% url 'clustering_results' %}" class="btn btn-success btn-lg shadow">
+                        <i class="bi bi-graph-up me-2"></i>Explore Clustering Results
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.air-quality-bg {
+    background-image: url('{% static "images/air-quality-icon.png" %}');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    position: relative;
+    color: #333;
+}
+
+.overlay-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        135deg, 
+        rgba(0, 123, 255, 0.1), 
+        rgba(0, 255, 255, 0.2)
+    );
+    z-index: 1;
+}
+
+.card {
+    position: relative;
+    z-index: 2;
+}
+</style>
+{% endblock %}

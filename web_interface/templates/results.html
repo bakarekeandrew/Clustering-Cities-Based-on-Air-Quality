@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h1>Clustering Results</h1>
+
+{% if error %}
+<div class="alert alert-danger">
+    <h2>An error occurred:</h2>
+    <pre>{{ error }}</pre>
+    <h3>Traceback:</h3>
+    <pre>{{ traceback }}</pre>
+</div>
+{% else %}addd
+    <h2>ANDREW</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Cluster</th>
+                <th>Number of Cities</th>
+                <th>Average AQI</th>
+                <th>Countries</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cluster, data in results.cluster_summary.items %}
+            <tr>
+                <td>{{ cluster }}</td>
+                <td>{{ data.City }}</td>
+                <td>{{ data.AQI_Value.mean|floatformat:2 }}</td>
+                <td>{{ data.Country|join:", " }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Silhouette Score</h2>
+    <p>{{ results.silhouette_score|floatformat:4 }}</p>
+
+    <h2>Cluster Visualization</h2>
+    <img src="{% static 'cluster_visualization.png' %}" alt="Cluster Visualization" class="img-fluid">
+{% endif %}
+{% endblock %}
